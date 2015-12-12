@@ -5,11 +5,12 @@ var Category  = mongoose.model('Category');
 var Subcategory  = mongoose.model('Subcategory');
 
 //GET - Return all products in the DB
-exports.findAllProducts = function(req, res) { 
-    Product.find(function(err, products) {
-    if(err) res.send(500, err.message);
+exports.findAllProducts = function(req, res) {
 
-    console.log('GET /products')
+    Product.find({}).sort('name').exec(function(err, products){
+        if(err) res.send(500, err.message);
+
+        console.log('GET /products')
         res.status(200).jsonp(products);
     });
 };

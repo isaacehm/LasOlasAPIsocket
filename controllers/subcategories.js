@@ -4,13 +4,15 @@ var Subcategory  = mongoose.model('Subcategory');
 var Category  = mongoose.model('Category');
 
 //GET - Return all subcategories in the DB
-exports.findAllSubcategories = function(req, res) {  
-    Subcategory.find(function(err, subcategories) {
-    if(err) res.send(500, err.message);
+exports.findAllSubcategories = function(req, res) { 
 
-    console.log('GET /subcategories')
+    Subcategory.find({}).sort('name').exec(function(err, subcategories){
+        if(err) res.send(500, err.message);
+
+        console.log('GET /subcategories')
         res.status(200).jsonp(subcategories);
     });
+
 };
 
 //GET - Return a Subcategory with specified ID
