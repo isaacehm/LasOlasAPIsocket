@@ -79,13 +79,6 @@ exports.addOrder = function(req, res) {
 //PUT - Update a register already exists
 exports.updateOrder = function(req, res) {  
 
-    var products = [];
-    var productsRequest = req.body.products.split(";");
-
-    for(var i=0; i<productsRequest.length; i++)
-        products.push(JSON.parse(productsRequest[i]));
-
-
     Order.findById(req.params.id, function(err, order) {
         order.employee	=    req.body.employee,
         order.stay	=   req.body.stay,
