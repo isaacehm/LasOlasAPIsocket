@@ -3,7 +3,6 @@ var mongoose = require('mongoose'),
 
 var categorySchema = new Schema({  
 	name:    { type: String },
-	icon:    { type: String }
 });
 
 module.exports = mongoose.model('Category', categorySchema); 
