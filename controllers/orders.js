@@ -1,6 +1,7 @@
 //File: controllers/orders.js
 var mongoose = require('mongoose');  
 var Order  = mongoose.model('Order');
+var Product  = mongoose.model('Product');
 var io = require('socket.io');
 
 //GET - Return all orders in the DB
@@ -49,7 +50,7 @@ exports.findOrderById = function(req, res) {
 
 //POST - Insert a new Order in the DB
 exports.addOrder = function(req, res) {
-    console.log('POST');
+    console.log('POST /orders');
     //console.log(req.body);
 
     var products = [];
@@ -71,6 +72,15 @@ exports.addOrder = function(req, res) {
 
     order.save(function(err, order) {
         if(err) return res.status(500).send(err.message);
+
+        products.forEach(function(product){
+            var newStock = product.stock - product.order;
+            Product.update({name: product.name}, {stock: newStock}, function(err, updated){
+                if(err) console.log('Error while updating stock.');
+                console.log('Stock updated');
+            });
+        });
+
         res.status(200).jsonp(order);
     });
 
