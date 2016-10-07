@@ -1,6 +1,7 @@
 //File: controllers/users.js
 var mongoose = require('mongoose');  
 var User  = mongoose.model('User');
+var bcrypt = require('bcrypt');
 
 //POST - Login an user in the DB
 exports.loginUser = function(req, res) {  
@@ -47,19 +48,23 @@ exports.findUserById = function(req, res) {
 //POST - Insert a new User in the DB
 exports.addUser = function(req, res) {  
     console.log('POST');
-    console.log(req.body);
 
-    var user = new User({
-        name:    req.body.name,
-        username:     req.body.username,
-        password:  req.body.password,
-        type:   req.body.type
-    });
+    bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.hash(req.body.password, salt, function(err, hash) {
+            // Store hash in your password DB. 
+            var user = new User({
+                name:    req.body.name,
+                username:     req.body.username,
+                password:  hash,
+                type:   req.body.type
+            });
 
-    user.save(function(err, user) {
-        if(err) return res.send(500, err.message);
-    res.status(200).jsonp(user);
-    });
+            user.save(function(err, user) {
+                if(err) return res.send(500, err.message);
+                res.status(200).jsonp(user);
+            });
+        });
+    });    
 };
 
 //PUT - Update a register already exists

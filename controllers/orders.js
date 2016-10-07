@@ -104,12 +104,12 @@ exports.updateOrder = function(req, res) {
 };
 
 //DELETE - Delete a Order with specified ID
-exports.deleteOrder = function(req, res) {  
+exports.deleteOrder = function(req, res) {
     Order.findById(req.params.id, function(err, order) {
     	if (order!=null){
             order.remove(function(err) {
                 if(err) return res.send(500, err.message);
-            res.status(200).send("Order deleted.");
+                res.status(200).send("Order deleted.");
             })
         }else{
             res.status(404);

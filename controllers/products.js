@@ -95,10 +95,7 @@ exports.updateProduct = function(req, res) {
             });
 
         });
-    });
-
-
-    
+    });    
 };
 
 //DELETE - Delete a Product with specified ID
