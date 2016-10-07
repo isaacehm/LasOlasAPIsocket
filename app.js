@@ -62,7 +62,7 @@ router.get('/', function(req, res) {
 app.use(router);*/
 
 var router = express.Router();
-router.get('/', function(req, res) {  
+router.get('/balneario/api', function(req, res) {  
    res.render('index');
 });
 app.use(router);
@@ -140,12 +140,12 @@ orders.route('/order/:id')
 orders.route('/orders/:employee/:date')
   .get(OrderCtrl.findOrders);
 
-app.use('/api', users);
-app.use('/api', categories);
-app.use('/api', subcategories);
-app.use('/api', products);
-app.use('/api', stays);
-app.use('/api', orders);
+app.use('/balneario/api', users);
+app.use('/balneario/api', categories);
+app.use('/balneario/api', subcategories);
+app.use('/balneario/api', products);
+app.use('/balneario/api', stays);
+app.use('/balneario/api', orders);
 
 /******************** API routes ********************/
 
