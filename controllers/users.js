@@ -1,7 +1,7 @@
 //File: controllers/users.js
 var mongoose = require('mongoose');  
 var User  = mongoose.model('User');
-var bcrypt = require('bcrypt');
+//var bcrypt = require('bcrypt');
 
 //POST - Login an user in the DB
 exports.loginUser = function(req, res) {  
