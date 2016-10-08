@@ -6,7 +6,6 @@ var bcrypt = require('bcrypt');
 //POST - Login an user in the DB
 exports.loginUser = function(req, res) {  
     console.log('POST /user');
-    console.log(req.body);
     if(req.body.username != null && req.body.password != null){
         User.findOne({ username: req.body.username}, function (err, user){
             if(err || user == null) return res.status(500).send("El usuario no existe.");
@@ -17,16 +16,7 @@ exports.loginUser = function(req, res) {
                 }else{
                     res.status(403).send(false);
                 }
-            });
-
-            /*if(user.password == req.body.password){
-                res.status(200).jsonp(user);
-                console.log("¡Inicio de sesión exitoso!");
-                //return user.name;
-            }else{
-                res.status(403).send(false);
-                //return false;
-            }*/
+            });           
         });
     }else{
         res.status(403).send(false);

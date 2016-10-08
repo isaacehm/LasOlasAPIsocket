@@ -7,7 +7,7 @@ var io = require('socket.io');
 //GET - Return all orders in the DB
 exports.findAllOrders = function(req, res) {  
     var socket = io();
-    socket.emit('new order', 'olden');
+    socket.emit('new order', 'order');
     Order.find(function(err, orders) {
     if(err) res.send(500, err.message);
 
@@ -40,18 +40,13 @@ exports.findOrderById = function(req, res) {
     	if(err) return res.send(500, err.message);
 
     console.log('GET /order/' + req.params.id);
-        res.status(200).jsonp(order);
-        //console.log(order.products[0]);
-        /*for(var i=0;i<order.products.length;i++)
-            console.log(order.products[i].name);*/
-
+        res.status(200).jsonp(order);       
     });
 };
 
 //POST - Insert a new Order in the DB
 exports.addOrder = function(req, res) {
     console.log('POST /orders');
-    //console.log(req.body);
 
     var products = [];
     var productsRequest = req.body.products.split(";");
@@ -67,7 +62,8 @@ exports.addOrder = function(req, res) {
         stay:    req.body.stay,
         stayNumber:    req.body.stayNumber,
         total: req.body.total,
-        products:   products
+        products:   products,
+        date: new Date()
     });
 
     order.save(function(err, order) {
@@ -93,7 +89,6 @@ exports.updateOrder = function(req, res) {
         order.employee	=    req.body.employee,
         order.stay	=   req.body.stay,
         order.stayNumber    =    req.body.stayNumber,
-        //order.products = products,
         order.status = req.body.status
 
         order.save(function(err) {
