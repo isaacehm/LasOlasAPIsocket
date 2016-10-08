@@ -72,21 +72,25 @@ exports.addUser = function(req, res) {
                 res.status(200).jsonp(user);
             });
         });
-    });    
+    });
 };
 
 //PUT - Update a register already exists
 exports.updateUser = function(req, res) {  
     User.findById(req.params.id, function(err, user) {
-        user.name	=    req.body.name,
-        user.username	=     req.body.username,
-        user.password	=  req.body.password,
-        user.type	=   req.body.type
+        bcrypt.genSalt(10, function(err, salt) {
+            bcrypt.hash(req.body.password, salt, function(err, hash) {
+                user.name   =    req.body.name,
+                user.username   =     req.body.username,
+                user.password   =  hash,
+                user.type   =   req.body.type
 
-        user.save(function(err) {
-            if(err) return res.send(500, err.message);
-      	res.status(200).jsonp(user);
-        });
+                user.save(function(err) {
+                    if(err) return res.send(500, err.message);
+                    res.status(200).jsonp(user);
+                });               
+            });
+        });        
     });
 };
 
