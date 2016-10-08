@@ -11,22 +11,22 @@ exports.loginUser = function(req, res) {
         User.findOne({ username: req.body.username}, function (err, user){
             if(err || user == null) return res.status(500).send("El usuario no existe.");
 
-            /*bcrypt.compare(req.body.password, user.password, function(err, res) {
+            bcrypt.compare(req.body.password, user.password, function(err, res) {
                 if(res){
                     res.status(200).jsonp(user);
                 }else{
                     res.status(403).send(false);
                 }
-            });*/
+            });
 
-            if(user.password == req.body.password){
+            /*if(user.password == req.body.password){
                 res.status(200).jsonp(user);
                 console.log("¡Inicio de sesión exitoso!");
                 //return user.name;
             }else{
                 res.status(403).send(false);
                 //return false;
-            }
+            }*/
         });
     }else{
         res.status(403).send(false);
