@@ -65,10 +65,6 @@ exports.addOrder = function(req, res) {
         products:   products
     });
 
-    console.log(order.date);
-    order.date = new Date();
-    console.log(order.date);
-
     order.save(function(err, order) {
         if(err) return res.status(500).send(err.message);
 
