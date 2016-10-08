@@ -8,7 +8,8 @@ var orderSchema = new Schema({
   products:  [],
   status: { type: String, enum: ['Pendiente', 'Procesada', 'Cobrada'], default: 'Pendiente' },
   total: 	{ type: String },
-  date:     { type: Date, default: Date.now }
+  date:     { type: Date }
+  //date:     { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model('Order', orderSchema); 
