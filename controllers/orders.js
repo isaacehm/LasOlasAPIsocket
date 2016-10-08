@@ -62,9 +62,12 @@ exports.addOrder = function(req, res) {
         stay:    req.body.stay,
         stayNumber:    req.body.stayNumber,
         total: req.body.total,
-        products:   products,
-        date: new Date()
+        products:   products
     });
+
+    console.log(order.date);
+    order.date = new Date();
+    console.log(order.date);
 
     order.save(function(err, order) {
         if(err) return res.status(500).send(err.message);
