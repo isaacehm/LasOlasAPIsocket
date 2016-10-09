@@ -17,7 +17,8 @@ var port = process.env.PORT || 3000;
 
 io.on('connection', function(socket){
   socket.on('new order', function(order){
-  	io.emit('new order', order);
+    console.log(order);
+  	//io.emit('new order', order);
   });
 });
 
