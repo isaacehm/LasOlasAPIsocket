@@ -76,6 +76,9 @@ exports.addOrder = function(req, res) {
             });
         });
 
+        var socket = io();
+        socket.emit('new order', order);
+
         res.status(200).jsonp(order);
     });
 

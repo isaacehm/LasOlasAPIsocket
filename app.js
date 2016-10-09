@@ -53,13 +53,6 @@ var StayCtrl = require('./controllers/stays');
 var models     = require('./models/order')(app, mongoose);
 var OrderCtrl = require('./controllers/orders');
 
-/*// Example Route
-var router = express.Router();
-router.get('/', function(req, res) {  
-   res.render('index');
-});
-app.use(router);*/
-
 var router = express.Router();
 router.get('/balneario/api', function(req, res) {  
    res.render('index');
