@@ -104,13 +104,16 @@ exports.deleteOrder = function(req, res) {
             //console.log(order);
             order.products.forEach(function(product){
                 Product.find({'name':product.name},function(err, result) {
-                    Product.findById(result[0]._id, function(err, prod) {
-                        console.log(prod);
-                        /*prod.stock += product.order;
+                    result[0].stock += product.order;
+                    result[0].save(function(err) {
+                        if(err) console.log('Error restoring stock.');
+                    });
+                    /*Product.findById(result[0]._id, function(err, prod) {
+                        prod.stock += product.order;
                         prod.save(function(err) {
                             if(err) console.log('Error restoring stock.');
-                        });*/
-                    });
+                        });
+                    });*/
                 });
             });
             
