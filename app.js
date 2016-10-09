@@ -5,7 +5,7 @@ var bodyParser  = require("body-parser");
 var methodOverride = require("method-override");
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
-var io = require('socket.io')(http);
+//var io = require('socket.io')(http);
 
 var cors = require('express-cors');
 var orig =  cors({
@@ -14,14 +14,12 @@ var orig =  cors({
 
 var port = process.env.PORT || 3000;
 
-
-io.on('connection', function(socket){
+/*io.on('connection', function(socket){
   socket.on('new order', function(order){
     console.log(order);
   	//io.emit('new order', order);
   });
-});
-
+});*/
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
