@@ -7,7 +7,7 @@ var io = require('socket.io');
 //GET - Return all orders in the DB
 exports.findAllOrders = function(req, res) {  
     var socket = io();
-    socket.emit('new order', 'olden');
+    socket.emit('new order', 'order');
     Order.find(function(err, orders) {
         if(err) res.send(500, err.message);
 
