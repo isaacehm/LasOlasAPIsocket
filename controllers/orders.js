@@ -99,6 +99,7 @@ exports.updateOrder = function(req, res) {
 
 //DELETE - Delete a Order with specified ID
 exports.deleteOrder = function(req, res) {
+    console.log('DELETE /orders');
     Order.findById(req.params.id, function(err, order) {
     	if (order!=null){
             order.products.forEach(function(product){
