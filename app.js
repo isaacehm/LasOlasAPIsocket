@@ -5,7 +5,7 @@ var bodyParser  = require("body-parser");
 var methodOverride = require("method-override");
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
-//var io = require('socket.io')(http);
+var io = require('socket.io')(http);
 
 var cors = require('express-cors');
 var orig =  cors({
