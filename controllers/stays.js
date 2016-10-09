@@ -14,7 +14,7 @@ exports.findAllStays = function(req, res) {
 
 //POST - Insert a new Stay in the DB
 exports.addStay = function(req, res) {  
-    console.log('POST');
+    console.log('POST /stays');
     console.log(req.body);
 
     var stay = new Stay({
