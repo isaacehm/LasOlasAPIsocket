@@ -24,7 +24,7 @@ exports.addStay = function(req, res) {
 
     stay.save(function(err, stay) {
         if(err) return res.send(500, err.message);
-    res.status(200).jsonp(stay);
+        res.status(200).jsonp(stay);
     });
 };
 
