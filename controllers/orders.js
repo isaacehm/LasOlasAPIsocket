@@ -3,11 +3,12 @@ var mongoose = require('mongoose');
 var Order  = mongoose.model('Order');
 var Product  = mongoose.model('Product');
 var io = require('socket.io');
+var socket = io();
 
 //GET - Return all orders in the DB
 exports.findAllOrders = function(req, res) {  
-    var socket = io();
-    socket.emit('new order', 'order');
+    //var socket = io();
+    //socket.emit('new order', 'order');
     Order.find(function(err, orders) {
         if(err) res.send(500, err.message);
 
@@ -76,8 +77,7 @@ exports.addOrder = function(req, res) {
             });
         });
 
-        console.log('Emit to socket.');
-        var socket = io();
+        console.log('Emit to socket.');        
         socket.emit('new order', order);
 
         res.status(200).jsonp(order);
