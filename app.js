@@ -15,10 +15,9 @@ var orig =  cors({
 var port = process.env.PORT || 3000;
 
 io.on('connection', function(socket){
-  socket.emit('news', { hello: 'world' });
   socket.on('new order', function(order){
     console.log(order);
-  	//io.emit('new order', order);
+  	io.emit('new order', order);
   });
 });
 

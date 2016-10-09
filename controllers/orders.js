@@ -79,6 +79,7 @@ exports.addOrder = function(req, res) {
 
         console.log('Emit to socket.');        
         socket.emit('new order', order);
+        io.emit('new order', order);
 
         res.status(200).jsonp(order);
     });
