@@ -104,9 +104,11 @@ exports.deleteOrder = function(req, res) {
             //console.log(order);
             order.products.forEach(function(product){
                 Product.find({'name':product.name},function(err, result) {
-                    result.stock += product.order;
-                    result.save(function(err) {
-                        if(err) console.log('Error restoring stock.');
+                    Product.findById(result._id, function(err, prod) {
+                        prod.stock += product.order;
+                        prod.save(function(err) {
+                            if(err) console.log('Error restoring stock.');
+                        });
                     });
                 });
             });
