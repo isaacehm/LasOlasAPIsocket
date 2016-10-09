@@ -104,7 +104,7 @@ exports.deleteOrder = function(req, res) {
             //console.log(order);
             order.products.forEach(function(product){
                 Product.find({'name':product.name},function(err, result) {
-                    console.log(result._id);
+                    console.log(result);
                     Product.findById(result._id, function(err, prod) {
                         //console.log(prod);
                         /*prod.stock += product.order;
