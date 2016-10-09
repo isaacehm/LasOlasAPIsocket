@@ -77,9 +77,9 @@ exports.addOrder = function(req, res) {
             });
         });
 
-        console.log('Emit to socket.');        
+        console.log('Emit to socket');
         socket.emit('new order', order);
-        
+
         res.status(200).jsonp(order);
     });
 
